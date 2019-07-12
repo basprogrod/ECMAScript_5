@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/main.css">
+	<title>Document</title>
+</head>
+<body>
+    <button onclick="init()">press</button>
+    <div class="form">
+      <input id="mul"  class="inp" placeholder="2" value="2">
+      <div id="up-mul-btn" class="btn">up</div>
+      <div id="dn-mul-btn" class="btn">down</div>
+      <!-- <div id="mul-play" onclick="play(mulVal, mulInp)" class="btn">play</div> -->
+      <span>multiple</span><br>
+      <input id="rad" class="inp" placeholder="400" value="400">
+      <div id="up-rad-btn" class="btn">up</div>
+      <div id="dn-rad-btn" class="btn">down</div><span>radius</span><br>
+      <input id="num" class="inp" placeholder="400" value="300">
+      <div id="up-num-btn" class="btn">up</div>
+      <div id="dn-num-btn" class="btn">down</div>
+      <!-- <div id="mul-play" onclick="play(numVal, numInp)" class="btn">play</div> -->
+      <span>numbs</span><br>
+      <!-- <div id="mul-stop" onclick="stop()" class="btn">stop</div> -->
+    </div>
+	<div class="container">
+    <canvas id="canvas" width="500" height="500"></canvas>
+	</div>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    #mul-stop {
+      width: 100%;
+    }
+
+    span {
+      display: inline-block;
+      margin-left: 10px;
+      color: #E69800
+    }
+    .form {
+      padding: 20px;
+      position: absolute;
+      /*top: 50vh;
+      margin-top: -200px;
+      left: 50%;
+      margin-left: -188px;*/
+    }
+    .inp {
+      border: 2px solid #E69800;
+      display: inline-block;
+      width: 100px;
+      border-radius: 5px;
+      height: 50px;
+      color: #E69800;
+      font-size: 40px;
+      line-height: 45px;
+      text-align: center;
+      vertical-align: middle;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      margin-right: 10px;
+    }
+    .btn {
+      -webkit-touch-callout: none; /* iOS Safari */
+          -webkit-user-select: none; /* Safari */
+           -khtml-user-select: none; /* Konqueror HTML */
+             -moz-user-select: none; /* Firefox */
+              -ms-user-select: none; /* Internet Explorer/Edge */
+                  user-select: none; /* Non-prefixed version, currently
+                                        supported by Chrome and Opera */
+      display: inline-block;
+      vertical-align: middle;
+      width: 100px;
+      height: 50px;
+      line-height: 45px;
+      background-color: #E69800;
+      border-radius: 10px;
+      border: 3px solid #E69800;
+      text-align: center;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: transparent;
+      color:  #E69800
+    }
+    .container {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      display: -webkit-flex;
+      display: -moz-flex;
+      display: -ms-flex;
+      display: -o-flex;
+      display: flex;
+      justify-content: center;
+      -ms-align-items: center;
+      align-items: center;
+    }
+    #canvas {
+      /*width: 500px;
+      height: 500px;*/
+      /*border: 1px solid;*/
+      background-color: #530404;
+    }
+    button {
+      position: absolute;
+      z-index: 999;
+      top: 20px;
+      left: 50%;
+      margin-left: -35px;
+      width: 70px;
+      height: 70px;
+      cursor: pointer;
+      border-radius: 50%;
+      border: none;
+      border: 3px solid;
+      border-color: #fff;
+      text-transform: uppercase;
+      box-shadow: 0 0 10px 10px #0003;
+
+
+    }
+    button:hover {
+      background-color: transparent;
+      color: #fff;
+    }
+    button:focus {
+      outline: none;
+    }
+    body {
+      padding: 0;
+      margin: 0;
+      background-color: #530404;
+      -webkit-transition: all 0.7s;
+      -o-transition: all 0.7s;
+      transition: all 0.7s;
+      font-family: sans-serif;
+    }
+
+  </style>
+ <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+	<script>
+
+   
+   const mulInp = $('#mul')[0];
+   const radInp = $('#rad')[0];
+   const numInp = $('#num')[0];
+
+   const upMulBtn = $('#up-mul-btn')
+   const dnMulBtn = $('#dn-mul-btn')
+   const upRadBtn = $('#up-rad-btn')
+   const dnRadBtn = $('#dn-rad-btn')
+   const upNumBtn = $('#up-num-btn')
+   const dnNumBtn = $('#dn-num-btn')
+   const playMul = $('#mul-play')
+
+   let mulVal = +mulInp.value;
+   let radVal = +radInp.value;
+   let numVal = +numInp.value;
+   let tId = null;
+   let isPlayed = false;
+
+   function play(el, inp) {
+    stop();
+
+    if(!isPlayed) {
+
+      isPlayed = true;
+      var int = setInterval(function() {
+        inp.value = ++el;
+        init();
+        console.log(mulVal)
+      } ,100) 
+    }
+
+     tId = int;
+
+   }
+
+   function stop() {
+     clearInterval(tId);
+     isPlayed = false;
+   }
+
+ 
+
+
+
+   upNumBtn.click(()=>{
+       numVal+=10;
+       numInp.value = numVal;
+       init();
+   });
+   dnNumBtn.click(()=>{
+       if(numVal > 50 ) {
+           numVal-=10;
+           numInp.value = numVal
+       } else {
+           numInp.value = 50
+       }
+       init();
+   });
+
+   upRadBtn.click(()=>{
+       radVal+=10;
+       radInp.value = radVal;
+       init()
+   });
+   dnRadBtn.click(()=>{
+       if(radVal > 50 ) {
+           radVal-=10;
+           radInp.value = radVal
+       } else {
+           radInp.value = 50
+       }
+       init()
+   });
+
+   upMulBtn.click(()=>{
+     mulVal++;
+     mulInp.value = mulVal;
+     init()
+   });
+
+   dnMulBtn.click(()=>{
+    if(mulVal > 2 ) {
+        mulVal--;
+        mulInp.value = mulVal
+    } else {
+        mulInp.value = 2
+    }
+    init()
+   });
+
+   const canvas = document.querySelector('#canvas');
+   canvas.width = window.innerWidth;
+   canvas.height = window.innerHeight;
+
+   function init() {
+
+     mulVal = +mulInp.value;
+     radVal = +radInp.value;
+     numVal = +numInp.value;
+
+     mulInp.value = mulVal
+     radInp.value = radVal
+     numInp.value = numVal
+     
+     
+     let w = canvas.offsetWidth;
+     let h = canvas.offsetHeight;
+     let ctx = canvas.getContext('2d');
+
+     function Dot(x,y,count) {
+         this.count = count;
+         this.x = x;
+         this.y = y;
+     }
+     let dots = [];
+     let n = +numVal;
+     let loop = 0;
+     let result = [];
+     let mul = +mulVal;
+     let coords = [];
+     let speed = 1;
+     let radius = +radVal;
+
+     function line() {
+         for (let i = 0; i < mul; i++) { 
+             for (let j = 0; j < dots.length; j++) {
+                 coords.push({x: dots[j].x + w/2, y: dots[j].y + h/2})              
+             }           
+         }
+
+         for (var i = 0; i < coords.length; i++) {
+             result.push(function (n,mul) {return n * mul});
+         }
+
+         let int = setInterval(function(){
+
+            // while (1) {
+
+              // if(loop > coords.length / mul - 3) break;
+              if(loop > coords.length / mul - 3) clearInterval(int);
+              loop++;
+              // ctx.fillStyle = "rgba(65,7,7,0.01)"
+              // ctx.fillRect(0,0,w,h);
+              ctx.beginPath();
+              ctx.moveTo(coords[loop].x, coords[loop].y);
+
+              ctx.lineTo( coords[ result[loop](loop, mul) ].x, coords[result[loop](loop, mul)].y);
+
+              ctx.strokeStyle = `rgba(255,255,255,0.3)`;
+
+              ctx.stroke();
+
+              console.log(coords[ result[loop](loop, mul) ])
+
+            // }
+
+         },speed)
+       
+     }
+
+     function drow() {
+
+         for(let i = 0 ; i < n; i++) {
+             let x = Math.floor(radius * Math.sin(3.14 / (n / 2) * i))
+             let y = Math.floor(radius * Math.cos(3.14 / (n / 2) * i))
+             dots.push(new Dot(x,y,i));
+             // console.log('x=',x,'y=',y)
+          
+         }
+         for(let i = 0; i<dots.length; i++) {
+             ctx.fillStyle = `rgba(255,255,255,0.3)`;
+             ctx.fillRect(dots[i].x-2 + w/2,dots[i].y-2 + h/2 ,4,4);
+         }
+         ctx.beginPath();
+         ctx.moveTo(dots[0].x + w/2, dots[0].y + h/2);
+     }
+     
+     ctx.fillStyle = "#530404"
+     ctx.fillRect(0,0,w,h);
+     result.length = 0;
+     coords.length = 0;
+     drow();
+     line();  
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+  </script>
+</body>
+</html>

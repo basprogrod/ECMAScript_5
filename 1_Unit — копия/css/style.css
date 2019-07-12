@@ -1,0 +1,108 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  transition: all 0.2s;
+}
+.b {
+  background-color: rgba(0,0,255,0.05) !important;
+}
+.r {
+  background-color: rgba(255,0,255,0.05) !important;
+}
+.s {
+  background-color: rgba(0,0,0,0.7) !important;
+}
+.w {
+  background-color: rgba(255,255,255,0.2) !important;
+}
+a {
+ text-decoration: none;
+ color: #fff;}
+/* a:hover {
+   color: #80848c; }*/
+ul,
+ol {list-style: none;margin: 0;padding: 0;}
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  list-style: none;
+  margin: 0;padding: 0;
+}
+a, li, button, input, textarea {
+    outline: none !important;
+    cursor: pointer;
+}
+
+.clear {
+    clear: both;
+}
+/*:focus::-webkit-input-placeholder {color: transparent}
+:focus::-moz-placeholder          {color: transparent}
+:focus:-moz-placeholder           {color: transparent}
+:focus:-ms-input-placeholder      {color: transparent}*/
+.footer__input::-webkit-input-placeholder {color: #7d7d7d}
+.footer__input::-moz-placeholder          {color: #7d7d7d}
+.footer__input:-moz-placeholder           {color: #7d7d7d}
+.footer__input:-ms-input-placeholder      {color: #7d7d7d}
+.header input::-webkit-input-placeholder {color: #afafaf}
+.header input::-moz-placeholder          {color: #afafaf}
+.header input:-moz-placeholder           {color: #afafaf}
+.header input:-ms-input-placeholder      {color: #afafaf}
+
+
+h1, h2 {
+  margin: 0;
+  font-weight: 400;
+  font-size: inherit;
+}
+body {
+ color: #323232;
+ font-size: 14px;
+ padding: 0;
+ margin: 0;
+}
+html {
+  font-size: 14px;
+}
+.content {
+  position: relative;
+  width: 100%;
+  max-width: 1110px;
+  margin: 0 auto;
+  font-family: Ubuntu;
+
+}
+.flex {
+  display: flex;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.aic  {
+  display: flex;
+  -ms-align-items: center;
+  align-items: center;
+}
+
+.jcsb {
+  display: flex;
+  justify-content: space-between;
+}
+
+.jcc {
+  display: flex;
+  justify-content: center;
+}
+.fdc  {
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  -o-flex-direction: column;
+  flex-direction: column;
+}

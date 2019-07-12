@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/main.css">
+	<title>Document</title>
+</head>
+<body>
+  <div id="edit-window">
+    
+    <form id="edit-form" action="#">
+      <button id="close-edit-window" class="close">close</button>
+      <h2>редактировать</h2>
+      <div class="form__field">
+        <div class="form__field-left">Тип записи</div>
+        <div class="form__field-right">
+          <select name="create-form-select" id="select-1">
+            <option id="indusrt" value="val-1">рабочий индустриального предприятия</option>
+            <option id="transp" value="val-2">рабочий транспортного предприятия</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="section-1" class="active">
+        <div class="form__field">
+          <div class="form__field-left">Имя</div>
+          <div class="form__field-right">
+            <input type="text" value="">
+          </div>    
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Фамилия</div>
+          <div class="form__field-right">
+            <input type="text" value="">
+          </div>    
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Отчество</div>
+          <div class="form__field-right">
+            <input type="text" value="">
+          </div>    
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Возраст</div>
+          <div class="form__field-right">
+            <input type="text" value="">
+          </div>    
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Наличие Детей</div>
+          <div class="form__field-right">
+            <input type="checkbox">
+          </div>    
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Должность</div>
+          <div class="form__field-right">
+            <select name="create-form-select" id="select-2">
+              <option value="cleaner">уборщик</option>
+              <option value="proger">программист</option>
+              <option value="teacher">препод</option>
+            </select>
+          </div>
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Стаж</div>
+          <div class="form__field-right">
+            <input type="text" value="">
+          </div>    
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Дата принятия на работу</div>
+          <div class="form__field-right">
+            <input type="text" value="">
+          </div>    
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Организация</div>
+          <div class="form__field-right">
+            <select name="create-form-select" id="select-3">
+              <option value="ormedia">ormedia</option>
+              <option value="epam">epam</option>
+              <option value="ЖЭУ">ЖЭУ</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <button type="submit" id="form-change-btn" class="form__create-btn">изменить</button>
+      <button type="submit" id="form-edit-clean-btn" class="form__clean-btn">очистить</button>
+      
+    </form>
+
+  </div>
+
+  <div id="create-window">
+    <form id="create-form" action="#" class="create-form form">
+      <button id="close-create-window" class="close">close</button>
+      <h2 class="form__title form">Новый Работник</h2>
+
+      <div class="form__field">
+        <div class="form__field-left">Тип записи</div>
+        <div class="form__field-right">
+          <select name="create-form-select" id="select-1">
+            <option id="indusrt" value="val-1">рабочий индустриального предприятия</option>
+            <option id="transp" value="val-2">рабочий транспортного предприятия</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="section-1" class="active">
+        <div class="form__field">
+          <div class="form__field-left">Имя</div>
+          <div class="form__field-right">
+            <input type="text" value="">
+          </div>    
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Фамилия</div>
+          <div class="form__field-right">
+            <input type="text" value="">
+          </div>    
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Отчество</div>
+          <div class="form__field-right">
+            <input type="text" value="">
+          </div>    
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Возраст</div>
+          <div class="form__field-right">
+            <input type="text" value="21">
+          </div>    
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Налисие Детей</div>
+          <div class="form__field-right">
+            <input type="checkbox">
+          </div>    
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Должность</div>
+          <div class="form__field-right">
+            <select name="create-form-select" id="select-2">
+              <option value="cleaner">уборщик</option>
+              <option value="proger">программист</option>
+              <option value="teacher">препод</option>
+            </select>
+          </div>
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Стаж</div>
+          <div class="form__field-right">
+            <input type="text" value="">
+          </div>    
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Дата принятия на работу</div>
+          <div class="form__field-right">
+            <input type="text" value="">
+          </div>    
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Организация</div>
+          <div class="form__field-right">
+            <select name="create-form-select" id="select-3">
+              <option value="ormedia">ormedia</option>
+              <option value="epam">epam</option>
+              <option value="ЖЭУ">ЖЭУ</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+    <!--   <div id="section-2">
+        <div class="form__field">
+          <div class="form__field-left">Имя</div>
+          <div class="form__field-right">
+            <input type="text" value="name">
+          </div>    
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Фамилия</div>
+          <div class="form__field-right">
+            <input type="text" value="surname">
+          </div>    
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Отчество</div>
+          <div class="form__field-right">
+            <input type="text" value="patronym">
+          </div>    
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Возраст</div>
+          <div class="form__field-right">
+            <input type="text" value="21">
+          </div>    
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Налисие Детей</div>
+          <div class="form__field-right">
+            <input type="checkbox">
+          </div>    
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Водитель</div>
+          <div class="form__field-right">
+            <select name="create-form-select" id="select-2">
+              <option value="cleaner">троллейбуса</option>
+              <option value="proger">автобуса</option>
+              <option value="teacher">трамвая</option>
+            </select>
+          </div>
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Стаж</div>
+          <div class="form__field-right">
+            <input type="text" value="3000">
+          </div>    
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Дата принятия на работу</div>
+          <div class="form__field-right">
+            <input type="text" value="12.12.12">
+          </div>    
+        </div>
+        <div class="form__field">
+          <div class="form__field-left">Организация</div>
+          <div class="form__field-right">
+            <select name="create-form-select" id="select-3">
+              <option value="ormedia">ormedia</option>
+              <option value="epam">epam</option>
+              <option value="ЖЭУ">ЖЭУ</option>
+            </select>
+          </div>
+        </div>
+      </div> -->
+
+
+      <button type="submit" id="form-create-btn" class="form__create-btn">Сохранить</button>
+      <button type="submit" id="form-clean-btn" class="form__clean-btn">очистить</button>
+    </form>
+  </div>
+
+	<div class="container">
+
+    <div class="main_page">
+      <h1 class="main__page-title">
+        Main page
+      </h1>
+      <button id="create" class="cteate-btn">craete</button>
+    </div>
+
+	</div>
+  <div class="container">
+    <div class="main__table table">
+      <div class="table__row">
+        <div class="table__cell">Имя</div>
+        <div class="table__cell">Фамилия</div>
+        <div class="table__cell">Возраст</div>
+        <div class="table__cell">Организация</div>
+        <div class="table__cell">Должность</div>
+        <div class="table__cell"></div>
+      </div>
+      <!-- <div class="table__row">
+        <div class="table__cell"></div>
+        <div class="table__cell"></div>
+        <div class="table__cell"></div>
+        <div class="table__cell"></div>
+        <div class="table__cell"></div>
+        <div class="table__cell table__cell-btns">
+          <button>редактировать</button>
+          <button>удалить</button>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+ <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>
