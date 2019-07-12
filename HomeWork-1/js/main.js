@@ -232,12 +232,17 @@ editForm.elements.forEach = Array.prototype.forEach;
         },
 
         validate: function() {
-
+            
             console.dir(this.id)
+            const arr = this.value.split('');   
+            function func(el) {
+                return el.charCodeAt() < 57;
+            }
 
             switch (this.id) {
+                
                 case 'name':
-                    if(+this.value) {
+                    if(arr.some(func)) {
                         alert('поле не должно содержать числа');
                         isValid = false;
                     } else {
@@ -245,7 +250,7 @@ editForm.elements.forEach = Array.prototype.forEach;
                     }
                     break;
                 case 'surname':
-                    if(+this.value) {
+                    if(arr.some(func)) {
                         alert('поле не должно содержать числа');
                         isValid = false;
                     } else {
@@ -254,7 +259,7 @@ editForm.elements.forEach = Array.prototype.forEach;
                     break;
                 case 'patronym':
 
-                    if(+this.value) {
+                    if(arr.some(func)) {
                         alert('поле не должно содержать числа');
                         isValid = false;
                     } else {
@@ -263,7 +268,7 @@ editForm.elements.forEach = Array.prototype.forEach;
                     break;
                 case 'name-editForm':
 
-                    if(+this.value) {
+                    if(arr.some(func)) {
                         alert('поле не должно содержать числа');
                         isValid = false;
                     } else {
@@ -272,7 +277,7 @@ editForm.elements.forEach = Array.prototype.forEach;
                     break;
                 case 'surname-editForm':
 
-                    if(+this.value) {
+                    if(arr.some(func)) {
                         alert('поле не должно содержать числа');
                         isValid = false;
                     } else {
@@ -281,7 +286,7 @@ editForm.elements.forEach = Array.prototype.forEach;
                     break;
                 case 'patronym-editForm':
 
-                    if(+this.value) {
+                    if(arr.some(func)) {
                         alert('поле не должно содержать числа');
                         isValid = false;
                     } else {
