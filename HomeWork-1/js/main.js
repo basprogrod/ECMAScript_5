@@ -1,43 +1,50 @@
-const createForm = document.querySelector('#create-form'),
-      editForm   = document.querySelector('#edit-form'),
-      mainTable  = document.querySelector('.main__table'),
-      stuf       = [];
+const createForm     = document.querySelector('#create-form'),
+      editForm       = document.querySelector('#edit-form'),
+      mainTable      = document.querySelector('.main__table'),
+      createSelect_1 = document.querySelector('#create-select-1'),
+      createInputs   = document.querySelectorAll('.create-ipn'),
+      stuf           = [];
 
-let countOfRow = 0,
-    currentRow = null,
-    isValid = true;
+let   countOfRow = 0,
+      currentRow = null,
+      isTrans    = false,
+      isValid    = true;
 
 createForm.elements.forEach = Array.prototype.forEach;
-editForm.elements.forEach = Array.prototype.forEach;
+editForm.elements.forEach   = Array.prototype.forEach;
+createInputs.forEach   = Array.prototype.forEach;
 
+
+/*--------------------------------effects--------------------------------*/
+    const effects = {
+        flash: function(el) {
+            el.classList.add('flash');
+            setTimeout(function(){
+                el.classList.remove('flash');
+            },20);
+        }
+    }
+/*--------------------------------end effects--------------------------------*/
 /*--------------------------------Viev--------------------------------*/
     const view = {
         showEditWindow: function () {
 
             currentRow = this;
-            const arr = [];
-            let n = currentRow.parentElement.parentElement.count;
-            // let inps = editForm.elements;
+            const arr  = [];
+            let   n    = currentRow.parentElement.parentElement.count;
 
-            editForm.elements[1].value = stuf[n].type;
-            editForm.elements[2].value = stuf[n].name;
-            editForm.elements[3].value = stuf[n].surname;
-            editForm.elements[4].value = stuf[n].patronym;
-            editForm.elements[5].value = stuf[n].age;
+            editForm.elements[1].value   = stuf[n].type;
+            editForm.elements[2].value   = stuf[n].name;
+            editForm.elements[3].value   = stuf[n].surname;
+            editForm.elements[4].value   = stuf[n].patronym;
+            editForm.elements[5].value   = stuf[n].age;
             editForm.elements[6].checked = stuf[n].hasChildren;
-            editForm.elements[7].value = stuf[n].status;
-            editForm.elements[8].value = stuf[n].expiriens;
-            editForm.elements[9].value = stuf[n].dateOfEmployment;
-            editForm.elements[10].value = stuf[n].organization;
+            editForm.elements[7].value   = stuf[n].status;
+            editForm.elements[8].value   = stuf[n].expiriens;
+            editForm.elements[9].value   = stuf[n].dateOfEmployment;
+            editForm.elements[10].value  = stuf[n].organization;
             
-
-
-            console.log(editForm.elements)
-
-            console.log(stuf[n])
-            // model.changeInfo(currentRow);
-            
-            document.querySelector('#edit-window').classList.add('active');  
+            document.querySelector('#edit-window').classList.add('active');
         },
         cleanForm: function () {
             createForm.elements.forEach(function(el){
@@ -71,34 +78,73 @@ editForm.elements.forEach = Array.prototype.forEach;
 
             stuf.forEach(function(el, i) {
                 mainTable.appendChild(row.cloneNode()); // добавляем ряд в таблицу
+
+
             });
+
             countOfRow++;
             this.fillRow();
         },
         fillRow: function () {
             const rows = document.querySelectorAll('.for-fill');
             rows.forEach = Array.prototype.forEach;
+            function status(i) {
+                let str = '';
+                switch (stuf[i].status) {
+                    case 'cleaner':
+                        str = 'уборщица';
+                        break;
+                    case 'proger':
+                        str = 'программист';
+                        break;
+                    case 'teacher':
+                        str = 'учитель';
+                        break;
+                    default:
+                        // statements_def
+                        break;
+                }
+                switch (stuf[i].vehicle) {
+                    case 'bus':
+                        str = 'водитель автобуса';
+                        break;
+                    case 'car':
+                        str = 'водитель автомобилья';
+                        break;
+                    case 'guzh':
+                        str = 'водитель повозки';
+                        break;
+                    default:
+                        // statements_def
+                        break;
+                }
+
+                return str;
+            }
+
+            
             rows.forEach(function(el, i){
                 el.count = i;
                 el.innerHTML += `<div class="table__cell">${stuf[i].name}</div>`;
                 el.innerHTML += `<div class="table__cell">${stuf[i].surname}</div>`;
                 el.innerHTML += `<div class="table__cell">${stuf[i].age}</div>`;
                 el.innerHTML += `<div class="table__cell">${stuf[i].organization}</div>`;
-                el.innerHTML += `<div class="table__cell">${stuf[i].status}</div>`;
+                el.innerHTML += `<div class="table__cell">${status(i)}</div>`;
                 el.innerHTML += `<div class="table__cell table__cell-btns">
-                <button class="full-info">все данные</button>
+                <button class="full-info">подробнее</button>
                 <button class="edit">редактировать</button>
                 <button class="delete">удалить</button></div>`;
             });
-            const arrBtnsEdit   = document.querySelectorAll('.edit'),
-                  arrBtnsDelete = document.querySelectorAll('.delete'),
+
+            const arrBtnsEdit     = document.querySelectorAll('.edit'),
+                  arrBtnsDelete   = document.querySelectorAll('.delete'),
                   arrBtnsFullInfo = document.querySelectorAll('.full-info');
 
             // цикл записать в фунцю в control
             for (let i = 0; i < arrBtnsEdit.length; i++) {
                 arrBtnsEdit[i].addEventListener('click', view.showEditWindow);
                 arrBtnsDelete[i].addEventListener('click', model.delete);
-                arrBtnsFullInfo[i].addEventListener('click', view.getFullInfo);
+                arrBtnsFullInfo[i].addEventListener('click', view.showFullInfo);
             }
             
         },
@@ -111,32 +157,62 @@ editForm.elements.forEach = Array.prototype.forEach;
             }
         },
 
-        getFullInfo: function() {
-            console.log('op')
-            document.querySelector('#allInfo').classList.add('active');
+        showFullInfo: function() {
+            console.log('op');
+
             currentRow = this;
-            let n = currentRow.parentElement.parentElement.count;
-            console.log(n);
-            let rows = document.querySelectorAll('.row');
-            
-            rows[0].children[1].innerHTML = stuf[n].type;
-            rows[1].children[1].innerHTML = stuf[n].name;
-            rows[2].children[1].innerHTML = stuf[n].surname;
-            rows[3].children[1].innerHTML = stuf[n].patronym;
-            rows[4].children[1].innerHTML = stuf[n].age;
-            rows[5].children[1].innerHTML = stuf[n].hasChildren ? 'Есть' : 'Нет';
-            rows[6].children[1].innerHTML = stuf[n].status;
-            rows[7].children[1].innerHTML = stuf[n].expiriens;
-            rows[8].children[1].innerHTML = stuf[n].dateOfEmployment;
-            rows[9].children[1].innerHTML = stuf[n].organization;
+            let n      = currentRow.parentElement.parentElement.count;
+            let rowsInd   = document.querySelectorAll('.row-ind'); 
+            let rowsTr  = document.querySelectorAll('.row-tr'); 
+
+            if(stuf[n]._self === 'industrial') {
+                document.querySelector('#allInfo').classList.add('active');     
+                rowsInd[0].children[1].innerHTML = stuf[n].type === 'val-1' ? 'индустриальное' : 'транспортное';
+                rowsInd[1].children[1].innerHTML = stuf[n].name;
+                rowsInd[2].children[1].innerHTML = stuf[n].surname;
+                rowsInd[3].children[1].innerHTML = stuf[n].patronym;
+                rowsInd[4].children[1].innerHTML = stuf[n].age;
+                rowsInd[5].children[1].innerHTML = stuf[n].hasChildren ? 'Есть' : 'Нет';
+                rowsInd[6].children[1].innerHTML = stuf[n].status;
+                rowsInd[7].children[1].innerHTML = stuf[n].expiriens;
+                rowsInd[8].children[1].innerHTML = stuf[n].dateOfEmployment;
+                rowsInd[9].children[1].innerHTML = stuf[n].organization;
+
+            } else {
+
+                document.querySelector('#allInfo-2').classList.add('active');         
+                rowsTr[0].children[1].innerHTML = stuf[n].type === 'val-1' ? 'индустриальное' : 'транспортное';
+                rowsTr[1].children[1].innerHTML = stuf[n].name;
+                rowsTr[2].children[1].innerHTML = stuf[n].surname;
+                rowsTr[3].children[1].innerHTML = stuf[n].patronym;
+                rowsTr[4].children[1].innerHTML = stuf[n].age;
+                rowsTr[5].children[1].innerHTML = stuf[n].hasChildren ? 'Есть' : 'Нет';
+                rowsTr[6].children[1].innerHTML = stuf[n].vehicle;
+                rowsTr[7].children[1].innerHTML = stuf[n].expiriens;
+                rowsTr[8].children[1].innerHTML = stuf[n].dateOfEmployment;
+                rowsTr[9].children[1].innerHTML = stuf[n].organization;
+
+            }
+
      
-
-            
-
         },
         fullInfoClose: function() {
             console.log('op')
             this.parentElement.classList.remove('active');
+        },
+        changeForm: function() {
+            console.log('op')
+            if (this.value === 'val-2') {
+                document.querySelectorAll('.change')[0].classList.add('active');
+                document.querySelectorAll('.change')[1].classList.add('active');
+                document.querySelectorAll('.change-edit')[0].classList.add('active');
+                document.querySelectorAll('.change-edit')[1].classList.add('active');
+            } else {
+                document.querySelectorAll('.change')[0].classList.remove('active');
+                document.querySelectorAll('.change')[1].classList.remove('active');
+                document.querySelectorAll('.change-edit')[0].classList.remove('active');
+                document.querySelectorAll('.change-edit')[1].classList.remove('active');
+            }
         }
 
     }
@@ -145,28 +221,63 @@ editForm.elements.forEach = Array.prototype.forEach;
 /*--------------------------------Model--------------------------------*/
     const model = {
 
+        ajaxGet: function() {
+         
+          let request = new XMLHttpRequest();
+
+          request.onreadystatechange = function () {
+
+            if(request.readyState == 4 && request.status == 200) {
+              console.log(request.responseText)
+              // $('.box').html(request.responseText);
+
+            }else{
+
+              $('.box').html('ошибка');
+
+            }
+
+          }
+
+          request.open('POST', 'server.html');
+
+          request.send()
+        },
+
         changeInfo: function(self) {
-            let arr = model.getInfo(editForm);
-            let n = currentRow.parentElement.parentElement.count;
-            let counter=0;
 
-            stuf[n].type             = editForm.elements[1].value; 
-            stuf[n].name             = editForm.elements[2].value; 
-            stuf[n].surname          = editForm.elements[3].value; 
-            stuf[n].patronym         = editForm.elements[4].value; 
-            stuf[n].age              = editForm.elements[5].value; 
-            stuf[n].hasChildren      = editForm.elements[6].checked; 
-            stuf[n].status           = editForm.elements[7].value; 
-            stuf[n].expiriens        = editForm.elements[8].value; 
-            stuf[n].dateOfEmployment = editForm.elements[9].value; 
-            stuf[n].organization     = editForm.elements[10].value; 
+            let arr     = model.getInfo(editForm);
+            let n       = currentRow.parentElement.parentElement.count;
+            let counter = 0;
 
-            
-            console.log(stuf[n])
-            console.log(arr)
-            console.log(n)
+            if(stuf[n].self === 'industr') {
 
-            console.log();
+                stuf[n].type             = editForm.elements[1].value; 
+                stuf[n].name             = editForm.elements[2].value; 
+                stuf[n].surname          = editForm.elements[3].value; 
+                stuf[n].patronym         = editForm.elements[4].value; 
+                stuf[n].age              = editForm.elements[5].value; 
+                stuf[n].hasChildren      = editForm.elements[6].checked; 
+                stuf[n].status           = editForm.elements[7].value; 
+                stuf[n].expiriens        = editForm.elements[8].value; 
+                stuf[n].dateOfEmployment = editForm.elements[9].value; 
+                stuf[n].organization     = editForm.elements[10].value;
+
+            } else {
+
+                stuf[n].type             = editForm.elements[1].value; 
+                stuf[n].name             = editForm.elements[2].value; 
+                stuf[n].surname          = editForm.elements[3].value; 
+                stuf[n].patronym         = editForm.elements[4].value; 
+                stuf[n].age              = editForm.elements[5].value; 
+                stuf[n].hasChildren      = editForm.elements[6].checked; 
+                stuf[n].vehicle          = editForm.elements[7].value; 
+                stuf[n].expiriens        = editForm.elements[8].value; 
+                stuf[n].dateOfEmployment = editForm.elements[9].value; 
+                stuf[n].organization     = editForm.elements[10].value;
+
+            }
+
             view.newRow();
 
 
@@ -175,64 +286,87 @@ editForm.elements.forEach = Array.prototype.forEach;
         getInfo: function (form) {
 
             const info = []; // инфа из формы
-            form.elements.forEach(function(el){
+            // form.elements.forEach(function(el){
+            createInputs.forEach(function(el){
                
                 if(el.tagName === 'INPUT' || el.tagName === 'SELECT') {
 
-                    if(el.type === 'checkbox') {
-                        info.push(el.checked); 
-                    } else {
-                        info.push(el.value);
-                    }
+                    if(el.type === 'checkbox') info.push(el.checked); 
+                    else info.push(el.value);
 
                 }
-            })
 
-            return info
+            });
+
+            return info;
         },
         createEmployee: function (e) {
             e.preventDefault();
             // получаем массив данныйх из формы
             if(isValid) {
-                const arr = model.getInfo(createForm);
+                const arr  = model.getInfo(createForm); 
+                console.log(arr)
                 const opts = {};
-                opts.type = arr[0];
-                opts.name = arr[1];
-                opts.surname = arr[2];
-                opts.patronym = arr[3];
-                opts.age = arr[4];
-                opts.hasChildren = arr[5];
-                opts.status = arr[6];
-                opts.expiriens = arr[7];
-                opts.dateOfEmployment = arr[8];
-                opts.organization = arr[9];
-                stuf.push(new model.Employee(opts));
-                
+
+                opts.type             = arr[0];
+                opts.name             = arr[1];
+                opts.surname          = arr[2];
+                opts.patronym         = arr[3];
+                opts.age              = arr[4];
+                opts.hasChildren      = arr[5];
+                opts.status           = arr[6];
+                opts.vehicle          = arr[7];
+                opts.expiriens        = arr[8];
+                opts.dateOfEmployment = arr[9];
+                opts.organization     = arr[10];
+
+                switch (createSelect_1.value) {
+                    case 'val-1':
+                        stuf.push(new model.EmployeeIndustr(opts));
+                        break;
+                    case 'val-2':
+                        stuf.push(new model.EmployeeTrans(opts));
+                        break;
+                }
+               
                 view.newRow();
+
             } else {
-                alert('не корректно заполнена форма!')
+                alert('не корректно заполнена форма!');
             }
         },
 
         Person: function (obj) {
-            this.name = obj.name || 'не указано';
-            this.age = obj.age || 'не указано';
-            this.surname = obj.surname || 'не указано';
+            this.name     = obj.name     || 'не указано';
+            this.age      = obj.age      || 'не указано';
+            this.surname  = obj.surname  || 'не указано';
             this.patronym = obj.patronym || 'не указано';
         },
 
-        Employee: function (obj) {
+        EmployeeIndustr: function (obj) {
             model.Person.call(this, obj);
-            this.type = obj.type;
-            this.hasChildren = obj.hasChildren;
-            this.status = obj.status;
-            this.expiriens = obj.expiriens || 'не указано';
+            this._self = 'industrial';
+            this.type             = obj.type;
+            this.hasChildren      = obj.hasChildren;
+            this.status           = obj.status;
+            this.expiriens        = obj.expiriens        || 'не указано';
             this.dateOfEmployment = obj.dateOfEmployment || 'не указано';
-            this.organization = obj.organization;
+            this.organization     = obj.organization;
+        },
+        EmployeeTrans: function (obj) {
+            model.Person.call(this, obj);
+            this._self = 'transport';
+            this.type             = obj.type;
+            this.hasChildren      = obj.hasChildren;
+            this.expiriens        = obj.expiriens        || 'не указано';
+            this.dateOfEmployment = obj.dateOfEmployment || 'не указано';
+            this.organization     = obj.organization;
+            this.vehicle = obj.vehicle;
+
         },
 
         validate: function() {
-            
+
             console.dir(this.id)
             const arr = this.value.split('');   
             function func(el) {
@@ -331,20 +465,32 @@ editForm.elements.forEach = Array.prototype.forEach;
                view.newRow(); 
             }
 
+        },
+        loadToBD: function() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/homework3', false);
+            xhr.setRequestHeader("Content-type","application/json");
+            xhr.send(JSON.stringify(upl[i]));
+            
         }
 
     }
 /*--------------------------------end Model--------------------------------*/
 
-model.Person.prototype.getFullInfoJSON = function() {
+model.Person.prototype.showFullInfoJSON = function() {
     return JSON.stringify(this);
-    // return this;
+}
+model.Person.prototype.self = function() {
+    return this._self;
 }
 
-model.Employee.prototype = Object.create(model.Person.prototype);
+model.EmployeeIndustr.prototype = Object.create(model.Person.prototype);
+model.EmployeeTrans.prototype   = Object.create(model.Person.prototype);
 
 
 /*--------------------------------Control--------------------------------*/
+    document.querySelector('#create-select-1').addEventListener('change', view.changeForm),
+    // document.querySelector('.load-from-bd').addEventListener('change', view.changeForm),
     document.querySelector('#create').addEventListener('click', view.showCreateWindow),
     document.querySelector('#close-create-window').addEventListener('click', view.closeCreateWindow),
     document.querySelector('#close-edit-window').addEventListener('click', view.closeEditWindow),
@@ -353,6 +499,7 @@ model.Employee.prototype = Object.create(model.Person.prototype);
     document.querySelector('#form-create-btn').addEventListener('click', model.createEmployee),
     document.querySelector('#form-change-btn').addEventListener('click', model.changeInfo),
     document.querySelector('#allInfo-close').addEventListener('click', view.fullInfoClose),
+    document.querySelector('#allInfo-close-2').addEventListener('click', view.fullInfoClose),
     document.querySelector('#expiriens').addEventListener('blur', model.validate),
     document.querySelector('#name').addEventListener('blur', model.validate),
     document.querySelector('#surname').addEventListener('blur', model.validate),
@@ -366,27 +513,7 @@ model.Employee.prototype = Object.create(model.Person.prototype);
     document.querySelector('#form-change-btn').addEventListener('click', function(e){
      e.preventDefault();
     });
-/*--------------------------------end control--------------------------------*/
-
-
-
-// document.querySelector('#select-1').addEventListener('change', swicthForm);
-
-
- 
-
-
-// function swicthForm(e) {
-
-//     if(this.value === 'val-1') {
-//         document.querySelector('#section-1').classList.add('active');
-//         document.querySelector('#section-2').classList.remove('active');
-//     } else {
-//         document.querySelector('#section-1').classList.remove('active');
-//         document.querySelector('#section-2').classList.add('active');
-//     }
-
-// }
+/*--------------------------------end Control--------------------------------*/
 
 
 

@@ -39,9 +39,17 @@ body {
 	border-bottom: 1px solid;
 }
 .table__cell {
-	padding-left: 15px;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: 7px;
 	height: 50px;
-	line-height: 50px;
 	width: 100%;
 	max-width: 142px;
 	border-right: 1px solid;
@@ -114,7 +122,7 @@ body {
 	display: block;
 }
 
-#allInfo {
+.allInfo {
 	display: none;
 	width: 300px;
 	background-color: #2591CF;
@@ -124,10 +132,15 @@ body {
 	position: fixed;
 	margin-top: 100px;
 }
-#allInfo.active {
+#allInfo-2 {
+
+	background-color: #259100;
+
+}
+.allInfo.active {
 	display: block;
 }
-.row	{
+.row-ind,	.row-tr	{
 	display: -webkit-flex;
 	display: -moz-flex;
 	display: -ms-flex;
@@ -136,6 +149,22 @@ body {
 	justify-content: space-between;
 	font-size: 20px;
 }
-.row:not(:last-child) {
+.row-ind:not(:last-child), .row-tr:not(:last-child) {
  border-bottom: 1px solid #fff;
+}
+.driver {
+	display: none;
+}
+.status.active {
+	display: none;
+}
+.driver.active {
+	display: flex;
+}
+
+.flash {
+	background-color: #fff;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	transition: all 0.4s;
 }

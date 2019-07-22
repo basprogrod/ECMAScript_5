@@ -1,0 +1,24 @@
+{	
+	"name":"Аркадий",
+
+	"age":"30",
+
+	"surname":"Пупкин",
+
+	"patronym":"Аркадиевич",
+
+	"_self":"industrial",
+
+	"type":"val-1",
+
+	"hasChildren":false,
+
+	"status":"proger",
+
+	"expiriens":"15",
+
+	"dateOfEmployment":"21.12.2019",
+
+	"organization":"ЖЭУ"
+
+}

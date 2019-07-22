@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+
+  <div class="tab">
+  	<div class="row">
+  		<span class="col col-1">Тип записи</span>
+  		<span class="col col-2"></span>
+  	</div>
+  	<div class="row">
+  		<span class="col col-1">Имя</span>
+  		<span class="col col-2"></span>
+  	</div>
+  	<div class="row">
+  		<span class="col col-1">Фамилия</span>
+  		<span class="col col-2"></span>
+  	</div>
+  	<div class="row">
+  		<span class="col col-1">Отчество</span>
+  		<span class="col col-2"></span>
+  	</div>
+  	<div class="row">
+  		<span class="col col-1">Возраст</span>
+  		<span class="col col-2"></span>
+  	</div>
+  	<div class="row">
+  		<span class="col col-1">Дети</span>
+  		<span class="col col-2"></span>
+  	</div>
+  	<div class="row">
+  		<span class="col col-1">Должность</span>
+  		<span class="col col-2"></span>
+  	</div>
+  	<div class="row">
+  		<span class="col col-1">Дата принятия на работу</span>
+  		<span class="col col-2"></span>
+  	</div>
+  	<div class="row">
+  		<span class="col col-1">Организация</span>
+  		<span class="col col-2"></span>
+  	</div>
+  	<div class="row">
+  		<span class="col col-1">Опыт</span>
+  		<span class="col col-2"></span>
+  	</div>
+  </div>
+  <a href="index.html">назад</a>
+  <style>
+  	.tab {
+  		display: inline-block;
+  		padding: 27px;
+  		background-color: #fff1;
+  	}
+  	.row {
+  		display: -webkit-flex;
+  		display: -moz-flex;
+  		display: -ms-flex;
+  		display: -o-flex;
+  		display: flex;
+  		width: 300px;
+  		justify-content: space-between;
+  	}
+
+  	.row:nth-child(even) {
+  		background-color: #fff1;
+  	}
+  </style>
+	
+	<script src="js/main.js"></script>
+	<script>
+
+		const cols = document.querySelectorAll('.col-2');
+		let result;
+
+		function get() {
+		         
+	    let request = new XMLHttpRequest();
+
+	      request.open('POST', 'hw.json', true);
+
+		    request.onreadystatechange = function () {
+
+		      if(request.status == 200) {
+
+		        result = JSON.parse(request.responseText)
+		        console.log(request.responseText);
+
+		        cols[0].innerHTML = result.type;
+		        cols[1].innerHTML = result.name;
+		        cols[2].innerHTML = result.surname;
+		        cols[3].innerHTML = result.patronym;
+		        cols[4].innerHTML = result.age;
+		        cols[5].innerHTML = result.hasChildren ? 'Есть' : 'Нет';
+		        cols[6].innerHTML = result.status;
+		        cols[7].innerHTML = result.dateOfEmployment;
+		        cols[8].innerHTML = result.organization;
+		        cols[9].innerHTML = result.expiriens;
+
+		      } else {
+		      	
+		        console.log("ощибка получения данных!");
+
+		      }
+
+	    }
+
+	    request.send()
+		}
+
+    get();
+
+	</script>
+</body>
+</html>

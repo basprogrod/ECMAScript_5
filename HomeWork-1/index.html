@@ -8,49 +8,93 @@
 </head>
 <body>
 
-  <div id="allInfo">
+  <div id="allInfo" class="allInfo">
     <button id="allInfo-close">close</button>
-    <div class="row">
+    <div class="row-ind">
       <div class="name">Тип записи</div>
       <div class="value">121</div>
     </div>
-    <div class="row">
+    <div class="row-ind">
       <div class="name">Имя</div>
       <div class="value">121</div>
     </div>
-    <div class="row">
+    <div class="row-ind">
       <div class="name">Фамилия</div>
       <div class="value"></div>
     </div>
-    <div class="row">
+    <div class="row-ind">
       <div class="name">Отчество</div>
       <div class="value"></div>
     </div>
-    <div class="row">
+    <div class="row-ind">
       <div class="name">Возраст</div>
       <div class="value"></div>
     </div>
-    <div class="row">
+    <div class="row-ind">
       <div class="name">Наличие Детей</div>
       <div class="value"></div>
     </div>
-    <div class="row">
+    <div class="row-ind">
       <div class="name">Должность</div>
       <div class="value"></div>
     </div>
-    <div class="row">
+    <div class="row-ind">
       <div class="name">Опыт</div>
       <div class="value"></div>
     </div>
-    <div class="row">
+    <div class="row-ind">
       <div class="name">Дата принятия</div>
       <div class="value"></div>
     </div>
-    <div class="row">
+    <div class="row-ind">
       <div class="name">Организация</div>
       <div class="value"></div>
     </div>
   </div>
+  <div id="allInfo-2" class="allInfo">
+    <button id="allInfo-close-2">close</button>
+    <div class="row-tr">
+      <div class="name">Тип записи</div>
+      <div class="value">121</div>
+    </div>
+    <div class="row-tr">
+      <div class="name">Имя</div>
+      <div class="value">121</div>
+    </div>
+    <div class="row-tr">
+      <div class="name">Фамилия</div>
+      <div class="value"></div>
+    </div>
+    <div class="row-tr">
+      <div class="name">Отчество</div>
+      <div class="value"></div>
+    </div>
+    <div class="row-tr">
+      <div class="name">Возраст</div>
+      <div class="value"></div>
+    </div>
+    <div class="row-tr">
+      <div class="name">Наличие Детей</div>
+      <div class="value"></div>
+    </div>
+    <div class="row-tr">
+      <div class="name">Водитель</div>
+      <div class="value"></div>
+    </div>
+    <div class="row-tr">
+      <div class="name">Опыт</div>
+      <div class="value"></div>
+    </div>
+    <div class="row-tr">
+      <div class="name">Дата принятия</div>
+      <div class="value"></div>
+    </div>
+    <div class="row-tr">
+      <div class="name">Организация</div>
+      <div class="value"></div>
+    </div>
+  </div>
+
   <div id="edit-window">
     
     <form id="edit-form" action="#">
@@ -97,13 +141,23 @@
             <input type="checkbox">
           </div>    
         </div>
-        <div class="form__field">
+        <div class="form__field change-edit status">
           <div class="form__field-left">Должность</div>
           <div class="form__field-right">
             <select name="create-form-select" id="select-2">
-              <option value="cleaner">уборщик</option>
               <option value="proger">программист</option>
+              <option value="cleaner">уборщик</option>
               <option value="teacher">препод</option>
+            </select>
+          </div>
+        </div>
+        <div class="form__field change-edit driver">
+          <div class="form__field-left">Водитель</div>
+          <div class="form__field-right">
+            <select name="create-form-select" id="select-3">
+              <option value="bus">автобуса</option>
+              <option value="car">автомобиля</option>
+              <option value="guzh">гужевой повозки</option>
             </select>
           </div>
         </div>
@@ -145,7 +199,7 @@
       <div class="form__field">
         <div class="form__field-left">Тип записи</div>
         <div class="form__field-right">
-          <select name="create-form-select" id="select-1">
+          <select name="create-form-select" id="create-select-1" class="create-ipn">
             <option id="indusrt" value="val-1">рабочий индустриального предприятия</option>
             <option id="transp" value="val-2">рабочий транспортного предприятия</option>
           </select>
@@ -156,59 +210,69 @@
         <div class="form__field">
           <div class="form__field-left">Имя</div>
           <div class="form__field-right">
-            <input id="name" type="text" value="">
+            <input id="name" type="text" value="" class="create-ipn">
           </div>    
         </div>
         <div class="form__field">
           <div class="form__field-left">Фамилия</div>
           <div class="form__field-right">
-            <input id="surname" type="text" value="">
+            <input id="surname" type="text" value="" class="create-ipn">
           </div>    
         </div>
         <div class="form__field">
           <div class="form__field-left">Отчество</div>
           <div class="form__field-right">
-            <input id="patronym" type="text" value="">
+            <input id="patronym" type="text" value="" class="create-ipn">
           </div>    
         </div>
         <div class="form__field">
           <div class="form__field-left">Возраст</div>
           <div class="form__field-right">
-            <input id="age" type="number" value="21">
+            <input id="age" type="number" value="21" class="create-ipn">
           </div>    
         </div>
         <div class="form__field">
           <div class="form__field-left">Наличие Детей</div>
           <div class="form__field-right">
-            <input type="checkbox">
+            <input type="checkbox" class="create-ipn">
           </div>    
         </div>
-        <div class="form__field">
+        <div class="form__field change status">
           <div class="form__field-left">Должность</div>
           <div class="form__field-right">
-            <select name="create-form-select" id="select-2">
-              <option value="cleaner">уборщик</option>
+            <select name="create-form-select" id="select-2" class="create-ipn">
               <option value="proger">программист</option>
+              <option value="cleaner">уборщик</option>
               <option value="teacher">препод</option>
+            </select>
+          </div>
+        </div>
+        <div class="form__field change driver">
+          <div class="form__field-left">Водитель</div>
+          <div class="form__field-right">
+            <select name="create-form-select" id="select-3" class="create-ipn">
+              <option value="bus">автобуса</option>
+              <option value="car">автомобиля</option>
+              <option value="guzh">гужевой повозки</option>
             </select>
           </div>
         </div>
         <div class="form__field">
           <div class="form__field-left">Стаж</div>
           <div class="form__field-right">
-            <input id="expiriens" type="number" value="">
+            <input id="expiriens" type="number" value="" class="create-ipn">
           </div>    
         </div>
         <div class="form__field">
           <div class="form__field-left">Дата принятия на работу</div>
           <div class="form__field-right">
-            <input type="text" value="" placeholder="dd.mm.yyyy">
+            <input type="text" value="" placeholder="dd.mm.yyyy" class="create-ipn">
           </div>    
         </div>
         <div class="form__field">
           <div class="form__field-left">Организация</div>
           <div class="form__field-right">
-            <select name="create-form-select" id="select-3">
+            <select name="create-form-select" id="select-3" class="create-ipn">
               <option value="ormedia">ormedia</option>
               <option value="epam">epam</option>
               <option value="ЖЭУ">ЖЭУ</option>
@@ -228,7 +292,8 @@
       <h1 class="main__page-title">
         Main page
       </h1>
-      <button id="create" class="cteate-btn">craete</button>
+      <button id="create" class="cteate-btn">Создать</button>
+      <a id="load-from-bd" href="page.html" class="cteate-btn">Выгрузить из БД</a>
     </div>
 
 	</div>
@@ -242,17 +307,6 @@
         <div class="table__cell">Должность</div>
         <div class="table__cell"></div>
       </div>
-      <!-- <div class="table__row">
-        <div class="table__cell"></div>
-        <div class="table__cell"></div>
-        <div class="table__cell"></div>
-        <div class="table__cell"></div>
-        <div class="table__cell"></div>
-        <div class="table__cell table__cell-btns">
-          <button>редактировать</button>
-          <button>удалить</button>
-        </div>
-      </div> -->
     </div>
   </div>
 
