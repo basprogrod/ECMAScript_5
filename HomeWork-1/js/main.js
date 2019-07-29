@@ -364,7 +364,7 @@ function init() {
                 const arr = this.value.split('');   
                 function func(el) {
                     return el.charCodeAt() < 57;
-                }
+                } 
 
                 switch (this.id) {
                     
